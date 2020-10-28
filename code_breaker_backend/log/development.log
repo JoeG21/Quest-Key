@@ -1,0 +1,364 @@
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Started POST "/users" for ::1 at 2020-09-11 14:33:40 -0500
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#create as */*
+  Parameters: {"username"=>"joe", "user"=>{"username"=>"joe"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "joe"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:13:in `create'
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:16:in `create'
+  [1m[36mUser Create (1.9ms)[0m  [1m[32mINSERT INTO "users" ("username", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["username", "joe"], ["created_at", "2020-09-11 19:33:40.346968"], ["updated_at", "2020-09-11 19:33:40.346968"]]
+  ↳ app/controllers/users_controller.rb:16:in `create'
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:16:in `create'
+Completed 200 OK in 12ms (Views: 0.6ms | ActiveRecord: 3.5ms | Allocations: 6493)
+
+
+Started POST "/users" for ::1 at 2020-09-11 14:34:33 -0500
+Processing by UsersController#create as */*
+  Parameters: {"username"=>"joe", "user"=>{"username"=>"joe"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "joe"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:13:in `create'
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.1ms | Allocations: 943)
+
+
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20200904162718)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar, "highscore" integer DEFAULT 0, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200904162718"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateActiveStorageTables (20200904163401)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE "active_storage_blobs" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "key" varchar NOT NULL, "filename" varchar NOT NULL, "content_type" varchar, "metadata" text, "byte_size" bigint NOT NULL, "checksum" varchar NOT NULL, "created_at" datetime NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_blobs_on_key" ON "active_storage_blobs" ("key")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "active_storage_attachments" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "record_type" varchar NOT NULL, "record_id" integer NOT NULL, "blob_id" integer NOT NULL, "created_at" datetime NOT NULL, CONSTRAINT "fk_rails_c3b3935057"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_active_storage_attachments_on_blob_id" ON "active_storage_attachments" ("blob_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_attachments_uniqueness" ON "active_storage_attachments" ("record_type", "record_id", "name", "blob_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200904163401"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-09-11 20:05:46.730687"], ["updated_at", "2020-09-11 20:05:46.730687"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/users" for ::1 at 2020-09-11 15:07:29 -0500
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#create as */*
+  Parameters: {"username"=>"joe", "user"=>{"username"=>"joe"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "joe"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:13:in `create'
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:16:in `create'
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("username", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["username", "joe"], ["created_at", "2020-09-11 20:07:29.424250"], ["updated_at", "2020-09-11 20:07:29.424250"]]
+  ↳ app/controllers/users_controller.rb:16:in `create'
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:16:in `create'
+Completed 200 OK in 13ms (Views: 0.3ms | ActiveRecord: 2.0ms | Allocations: 7153)
+
+
+Started PATCH "/users/1" for ::1 at 2020-09-11 15:08:43 -0500
+Processing by UsersController#update as */*
+  Parameters: {"highscore"=>348, "id"=>"1", "user"=>{"highscore"=>348}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:32:in `find_user'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:26:in `update'
+  [1m[36mUser Update (0.4ms)[0m  [1m[33mUPDATE "users" SET "highscore" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["highscore", 348], ["updated_at", "2020-09-11 20:08:43.047309"], ["id", 1]]
+  ↳ app/controllers/users_controller.rb:26:in `update'
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:26:in `update'
+Completed 200 OK in 7ms (Views: 0.2ms | ActiveRecord: 1.6ms | Allocations: 3320)
+
+
+Started POST "/users" for ::1 at 2020-09-11 15:09:09 -0500
+Processing by UsersController#create as */*
+  Parameters: {"username"=>"joe", "user"=>{"username"=>"joe"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "joe"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:13:in `create'
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.1ms | Allocations: 937)
+
+
+Started POST "/users" for ::1 at 2020-10-22 05:30:36 -0500
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#create as */*
+  Parameters: {"username"=>"joe", "user"=>{"username"=>"joe"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "joe"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:13:in `create'
+Completed 200 OK in 6ms (Views: 0.4ms | ActiveRecord: 0.7ms | Allocations: 4598)
+
+
+Started POST "/users" for ::1 at 2020-10-22 05:37:50 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#create as */*
+  Parameters: {"username"=>"test", "user"=>{"username"=>"test"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:13:in `create'
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:16:in `create'
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("username", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["username", "test"], ["created_at", "2020-10-22 10:37:50.683079"], ["updated_at", "2020-10-22 10:37:50.683079"]]
+  ↳ app/controllers/users_controller.rb:16:in `create'
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:16:in `create'
+Completed 200 OK in 6ms (Views: 0.2ms | ActiveRecord: 1.3ms | Allocations: 3517)
+
+
+Started PATCH "/users/2" for ::1 at 2020-10-22 05:39:56 -0500
+Processing by UsersController#update as */*
+  Parameters: {"highscore"=>495, "id"=>"2", "user"=>{"highscore"=>495}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:32:in `find_user'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:26:in `update'
+  [1m[36mUser Update (0.4ms)[0m  [1m[33mUPDATE "users" SET "highscore" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["highscore", 495], ["updated_at", "2020-10-22 10:39:56.446559"], ["id", 2]]
+  ↳ app/controllers/users_controller.rb:26:in `update'
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:26:in `update'
+Completed 200 OK in 6ms (Views: 0.2ms | ActiveRecord: 1.4ms | Allocations: 3306)
+
+
+Started POST "/users" for ::1 at 2020-10-22 06:04:20 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#create as */*
+  Parameters: {"username"=>"test", "user"=>{"username"=>"test"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:13:in `create'
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.4ms | Allocations: 948)
+
+
+Started PATCH "/users/2" for ::1 at 2020-10-22 06:06:23 -0500
+Processing by UsersController#update as */*
+  Parameters: {"highscore"=>600, "id"=>"2", "user"=>{"highscore"=>600}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:32:in `find_user'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:26:in `update'
+  [1m[36mUser Update (0.8ms)[0m  [1m[33mUPDATE "users" SET "highscore" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["highscore", 600], ["updated_at", "2020-10-22 11:06:23.368191"], ["id", 2]]
+  ↳ app/controllers/users_controller.rb:26:in `update'
+  [1m[35m (2.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:26:in `update'
+Completed 200 OK in 7ms (Views: 0.2ms | ActiveRecord: 3.4ms | Allocations: 3104)
+
+
+Started POST "/users" for ::1 at 2020-10-22 06:36:32 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#create as */*
+  Parameters: {"username"=>"joegomez", "user"=>{"username"=>"joegomez"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "joegomez"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:13:in `create'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:16:in `create'
+  [1m[36mUser Create (0.7ms)[0m  [1m[32mINSERT INTO "users" ("username", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["username", "joegomez"], ["created_at", "2020-10-22 11:36:32.631948"], ["updated_at", "2020-10-22 11:36:32.631948"]]
+  ↳ app/controllers/users_controller.rb:16:in `create'
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:16:in `create'
+Completed 200 OK in 7ms (Views: 0.3ms | ActiveRecord: 2.1ms | Allocations: 3167)
+
+
+Started POST "/users" for ::1 at 2020-10-22 06:38:05 -0500
+Processing by UsersController#create as */*
+  Parameters: {"username"=>"joegomez", "user"=>{"username"=>"joegomez"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "joegomez"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:13:in `create'
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.1ms | Allocations: 919)
+
+
+Started POST "/users" for ::1 at 2020-10-22 06:41:48 -0500
+Processing by UsersController#create as */*
+  Parameters: {"username"=>"joegomez", "user"=>{"username"=>"joegomez"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "joegomez"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:13:in `create'
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.1ms | Allocations: 919)
+
+
+Started POST "/users" for ::1 at 2020-10-22 06:43:30 -0500
+Processing by UsersController#create as */*
+  Parameters: {"username"=>"joegomez", "user"=>{"username"=>"joegomez"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "joegomez"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:13:in `create'
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.1ms | Allocations: 919)
+
+
+Started POST "/users" for ::1 at 2020-10-22 06:45:48 -0500
+Processing by UsersController#create as */*
+  Parameters: {"username"=>"joegomez", "user"=>{"username"=>"joegomez"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "joegomez"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:13:in `create'
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.1ms | Allocations: 919)
+
+
+Started POST "/users" for ::1 at 2020-10-22 06:47:09 -0500
+Processing by UsersController#create as */*
+  Parameters: {"username"=>"joegomez", "user"=>{"username"=>"joegomez"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "joegomez"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:13:in `create'
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.1ms | Allocations: 919)
+
+
+Started POST "/users" for ::1 at 2020-10-22 06:49:32 -0500
+Processing by UsersController#create as */*
+  Parameters: {"username"=>"joegomez", "user"=>{"username"=>"joegomez"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "joegomez"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:13:in `create'
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.1ms | Allocations: 919)
+
+
+Started POST "/users" for ::1 at 2020-10-22 06:50:51 -0500
+Processing by UsersController#create as */*
+  Parameters: {"username"=>"joegomez", "user"=>{"username"=>"joegomez"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "joegomez"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:13:in `create'
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.1ms | Allocations: 920)
+
+
+Started POST "/users" for ::1 at 2020-10-22 06:52:14 -0500
+Processing by UsersController#create as */*
+  Parameters: {"username"=>"joegomez", "user"=>{"username"=>"joegomez"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "joegomez"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:13:in `create'
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.1ms | Allocations: 919)
+
+
+Started PATCH "/users/3" for ::1 at 2020-10-22 06:54:09 -0500
+Processing by UsersController#update as */*
+  Parameters: {"highscore"=>500, "id"=>"3", "user"=>{"highscore"=>500}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:32:in `find_user'
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:26:in `update'
+  [1m[36mUser Update (0.4ms)[0m  [1m[33mUPDATE "users" SET "highscore" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["highscore", 500], ["updated_at", "2020-10-22 11:54:09.327427"], ["id", 3]]
+  ↳ app/controllers/users_controller.rb:26:in `update'
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:26:in `update'
+Completed 200 OK in 41ms (Views: 36.0ms | ActiveRecord: 1.6ms | Allocations: 3088)
+
+
+Started POST "/users" for ::1 at 2020-10-22 06:58:50 -0500
+Processing by UsersController#create as */*
+  Parameters: {"username"=>"joegomez", "user"=>{"username"=>"joegomez"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "joegomez"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:13:in `create'
+Completed 200 OK in 2ms (Views: 0.7ms | ActiveRecord: 0.1ms | Allocations: 919)
+
+
+Started POST "/users" for ::1 at 2020-10-22 06:59:47 -0500
+Processing by UsersController#create as */*
+  Parameters: {"username"=>"joegomez1", "user"=>{"username"=>"joegomez1"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "joegomez1"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:13:in `create'
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:16:in `create'
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("username", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["username", "joegomez1"], ["created_at", "2020-10-22 11:59:47.188898"], ["updated_at", "2020-10-22 11:59:47.188898"]]
+  ↳ app/controllers/users_controller.rb:16:in `create'
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:16:in `create'
+Completed 200 OK in 5ms (Views: 0.2ms | ActiveRecord: 1.1ms | Allocations: 3149)
+
+
+Started POST "/users" for ::1 at 2020-10-22 07:01:37 -0500
+Processing by UsersController#create as */*
+  Parameters: {"username"=>"joegomez1", "user"=>{"username"=>"joegomez1"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "joegomez1"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:13:in `create'
+Completed 200 OK in 3ms (Views: 0.7ms | ActiveRecord: 0.1ms | Allocations: 919)
+
+
+Started POST "/users" for ::1 at 2020-10-22 07:02:39 -0500
+Processing by UsersController#create as */*
+  Parameters: {"username"=>"joegomez1", "user"=>{"username"=>"joegomez1"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "joegomez1"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:13:in `create'
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.1ms | Allocations: 919)
+
+
+Started POST "/users" for ::1 at 2020-10-22 07:04:58 -0500
+Processing by UsersController#create as */*
+  Parameters: {"username"=>"joegomez1", "user"=>{"username"=>"joegomez1"}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "joegomez1"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:13:in `create'
+Completed 200 OK in 3ms (Views: 0.7ms | ActiveRecord: 0.7ms | Allocations: 919)
+
+
+Started POST "/users" for ::1 at 2020-10-22 07:05:57 -0500
+Processing by UsersController#create as */*
+  Parameters: {"username"=>"joegomez1", "user"=>{"username"=>"joegomez1"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "joegomez1"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:13:in `create'
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.1ms | Allocations: 919)
+
+
+Started POST "/users" for ::1 at 2020-10-22 07:07:09 -0500
+Processing by UsersController#create as */*
+  Parameters: {"username"=>"joegomez1", "user"=>{"username"=>"joegomez1"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "joegomez1"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:13:in `create'
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.1ms | Allocations: 919)
+
+
+Started PATCH "/users/4" for ::1 at 2020-10-22 07:08:54 -0500
+Processing by UsersController#update as */*
+  Parameters: {"highscore"=>475, "id"=>"4", "user"=>{"highscore"=>475}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:32:in `find_user'
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:26:in `update'
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "highscore" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["highscore", 475], ["updated_at", "2020-10-22 12:08:54.348005"], ["id", 4]]
+  ↳ app/controllers/users_controller.rb:26:in `update'
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:26:in `update'
+Completed 200 OK in 6ms (Views: 0.2ms | ActiveRecord: 1.5ms | Allocations: 3070)
+
+
+Started POST "/users" for ::1 at 2020-10-22 07:13:18 -0500
+Processing by UsersController#create as */*
+  Parameters: {"username"=>"joegomez1", "user"=>{"username"=>"joegomez1"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "joegomez1"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:13:in `create'
+Completed 200 OK in 2ms (Views: 1.2ms | ActiveRecord: 0.1ms | Allocations: 919)
+
+
+Started POST "/users" for ::1 at 2020-10-22 07:14:27 -0500
+Processing by UsersController#create as */*
+  Parameters: {"username"=>"joegomez21", "user"=>{"username"=>"joegomez21"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "joegomez21"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:13:in `create'
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:16:in `create'
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("username", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["username", "joegomez21"], ["created_at", "2020-10-22 12:14:27.872253"], ["updated_at", "2020-10-22 12:14:27.872253"]]
+  ↳ app/controllers/users_controller.rb:16:in `create'
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:16:in `create'
+Completed 200 OK in 5ms (Views: 0.2ms | ActiveRecord: 1.3ms | Allocations: 3146)
+
+
+Started PATCH "/users/5" for ::1 at 2020-10-22 07:16:27 -0500
+Processing by UsersController#update as */*
+  Parameters: {"highscore"=>545, "id"=>"5", "user"=>{"highscore"=>545}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:32:in `find_user'
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:26:in `update'
+  [1m[36mUser Update (0.6ms)[0m  [1m[33mUPDATE "users" SET "highscore" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["highscore", 545], ["updated_at", "2020-10-22 12:16:27.108886"], ["id", 5]]
+  ↳ app/controllers/users_controller.rb:26:in `update'
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:26:in `update'
+Completed 200 OK in 6ms (Views: 0.2ms | ActiveRecord: 1.6ms | Allocations: 3070)
+
+
